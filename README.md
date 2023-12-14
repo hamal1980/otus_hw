@@ -1,2 +1,2 @@
 # otus_hw
-HomeWork Otus
+HomeWork Otus Albert Khamzin
