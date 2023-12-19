@@ -1,0 +1,606 @@
+Script started on Fri 15 Dec 2023 10:59:18 AM UTC
+]0;root@localhost:/home/vagrant[?1034h[root@localhost vagrant]# exitaskjdf[1Pdf[1Pkdsjaskdfjdf[2Pexit[Kexitaskjdf[1Pdf[1Pkdsjaskdfjdf[2Pexit[Klg[Kv[K[Kvgs
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# lvs
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# lvmdiskscan
+  /dev/sda1 [     <40.00 GiB] 
+  /dev/sdb  [      40.00 GiB] LVM physical volume
+  /dev/sdc  [      10.00 GiB] 
+  /dev/sdd  [       2.00 GiB] 
+  /dev/sde  [       1.00 GiB] 
+  /dev/sdf  [       1.00 GiB] 
+  4 disks
+  1 partition
+  1 LVM physical volume whole disk
+  0 LVM physical volumes
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# vgcreate VolGroup00
+  No command with matching syntax recognised.  Run 'vgcreate --help' for more information.
+  Correct command syntax is:
+  vgcreate VG_new PV ...
+
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# vgcreate VolGroup00 /dev/sdb
+  Volume group "VolGroup00" successfully created
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# lvcra[Keate -n LogVol00 -l+95$[K%FREE /dev/vg_root
+  Volume group "vg_root" not found
+  Cannot process volume group vg_root
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# lvcreate -n LogVol00 -l+95%FREE /dev/vg_root[K[K[K[K[K[K[KVo[K[KVog[KlG[K[K[K[KVolGroup00
+  Logical volume "LogVol00" created.
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# lvcreate -n LogVol00 -l+95%FREE /dev/VolGroup00[1P[1@1[C[C[C[C[C[C[1P[C[C[C[C[C[C[C[1P /dev/VolGroup00[1P /dev/VolGroup00[1P /dev/VolGroup00[1P /dev/VolGroup00[1P /dev/VolGroup00[1P /dev/VolGroup00[1P /dev/VolGroup00[1P /dev/VolGroup00L /dev/VolGroup001 /dev/VolGroup00, /dev/VolGroup00[1P /dev/VolGroup00/ /dev/VolGroup00[1P /dev/VolGroup00. /dev/VolGroup005 /dev/VolGroup00G /dev/VolGroup00
+  Logical volume "LogVol01" created.
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# lvcreate -n LogVol01 -L1.5G /dev/VolGroup00[4@0 -l+95%FREE[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[3Pvg_root[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[16Pvgcreate VolGroup00 /dev/sdb[K[8Plvmdiskscan
+  /dev/sda1 [     <40.00 GiB] 
+  /dev/sdb  [      40.00 GiB] LVM physical volume
+  /dev/sdc  [      10.00 GiB] 
+  /dev/sdd  [       2.00 GiB] 
+  /dev/sde  [       1.00 GiB] 
+  /dev/sdf  [       1.00 GiB] 
+  4 disks
+  1 partition
+  1 LVM physical volume whole disk
+  0 LVM physical volumes
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# 
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# g[Kvgs
+  VG         #PV #LV #SN Attr   VSize   VFree  
+  VolGroup00   1   2   0 wz--n- <40.00g 512.00m
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# lvs
+  LV       VG         Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  LogVol00 VolGroup00 -wi-a----- <38.00g                                                    
+  LogVol01 VolGroup00 -wi-a-----   1.50g                                                    
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# mf[Kkfs.xfs /dev/VolGroup00/LogVol00
+meta-data=/dev/VolGroup00/LogVol00 isize=512    agcount=4, agsize=2490112 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=0, sparse=0
+data     =                       bsize=4096   blocks=9960448, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal log           bsize=4096   blocks=4863, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# mou[K[K[Kmount /dev/VolGroup00/LogVol00 /mnt
+]0;root@localhost:/home/vagrant[root@localhost vagrant]# yum install -y xfsdump
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirror.hyperdedic.ru
+ * extras: mirror.hyperdedic.ru
+ * updates: mirror.hyperdedic.ru
+Resolving Dependencies
+--> Running transaction check
+---> Package xfsdump.x86_64 0:3.1.7-4.el7_9 will be installed
+--> Processing Dependency: attr >= 2.0.0 for package: xfsdump-3.1.7-4.el7_9.x86_64
+--> Running transaction check
+---> Package attr.x86_64 0:2.4.46-13.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=========================================================================================================================================
+ Package                        Arch                          Version                               Repository                      Size
+=========================================================================================================================================
+Installing:
+ xfsdump                        x86_64                        3.1.7-4.el7_9                         updates                        309 k
+Installing for dependencies:
+ attr                           x86_64                        2.4.46-13.el7                         base                            66 k
+
+Transaction Summary
+=========================================================================================================================================
+Install  1 Package (+1 Dependent package)
+
+Total download size: 375 k
+Installed size: 1.1 M
+Downloading packages:
+(1/2): attr-2.4.46-13.el7.x86_64.rpm                                                                              |  66 kB  00:00:00     
+(2/2): xfsdump-3.1.7-4.el7_9.x86_64.rpm               100% [===========================================]  0.0 B/s | 375 kB  --:--:-- ETA (2/2): xfsdump-3.1.7-4.el7_9.x86_64.rpm                                                                           | 309 kB  00:00:00     
+-----------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                    580 kB/s | 375 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : attr-2.4.46-13.el7.x86_64 [                                                                                         ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [#####                                                                                    ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [################                                                                         ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [########################                                                                 ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [##########################                                                               ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [###################################                                                      ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [#####################################                                                    ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [######################################                                                   ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [############################################                                             ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [###############################################                                          ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [########################################################                                 ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [#########################################################                                ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [###########################################################                              ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [###############################################################                          ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [#################################################################                        ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [####################################################################                     ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [########################################################################                 ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [##########################################################################               ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [#############################################################################            ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [################################################################################         ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [###################################################################################      ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [#####################################################################################    ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [######################################################################################   ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [#######################################################################################  ] 1/2  Installing : attr-2.4.46-13.el7.x86_64 [######################################################################################## ] 1/2  Installing : attr-2.4.46-13.el7.x86_64                                                                                             1/2 
+  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [                                                                                      ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [#####                                                                                 ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [###########                                                                           ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [#################                                                                     ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [######################                                                                ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [#########################                                                             ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [###############################                                                       ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [#####################################                                                 ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [###########################################                                           ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [#################################################                                     ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [#######################################################                               ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [############################################################                          ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [###############################################################                       ] 2/2  Installing : xfsdump-3.1.7-4.el7_9.x86_64 [#######################################################Script started on Fri 15 Dec 2023 11:23:00 AM UTC
+]0;root@localhost:~[?1034h[root@localhost ~]# lsblk
+NAME                  MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                     8:0    0   40G  0 disk 
+└─sda1                  8:1    0   40G  0 part 
+sdb                     8:16   0   40G  0 disk 
+├─VolGroup00-LogVol00 253:0    0   38G  0 lvm  /
+└─VolGroup00-LogVol01 253:1    0  1.5G  0 lvm  
+sdc                     8:32   0   10G  0 disk 
+sdd                     8:48   0    2G  0 disk 
+sde                     8:64   0    1G  0 disk 
+sdf                     8:80   0    1G  0 disk 
+]0;root@localhost:~[root@localhost ~]# pvcreate /dev/sdc
+  Physical volume "/dev/sdc" successfully created.
+]0;root@localhost:~[root@localhost ~]# vgcreate vg_root /dev/sdc
+  Volume group "vg_root" successfully created
+]0;root@localhost:~[root@localhost ~]# lvcreate -n lb[Kv_root -l+100$[K% [KFREE /dev/vg_root
+  Logical volume "lv_root" created.
+]0;root@localhost:~[root@localhost ~]# mkfs.xfs /dev/vg_root/lv_root 
+meta-data=/dev/vg_root/lv_root   isize=512    agcount=4, agsize=655104 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=0, sparse=0
+data     =                       bsize=4096   blocks=2620416, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal log           bsize=4096   blocks=2560, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+]0;root@localhost:~[root@localhost ~]# mount /dev/[K[K[K[K[K[K[K[K[K[K[Kmd[Kkdir /mnt/v[Knew_root[K[K[K[K[K[K[Kr
+]0;root@localhost:~[root@localhost ~]# mount /dev/vg_root/lv_root /n[Kmnt/nr/
+]0;root@localhost:~[root@localhost ~]# xfs [Kdump -J - /dev/Vl[KolGroup00/LogVol00 | xfsrestore -J - /mnt/nr
+xfsdump: using file dump (drive_simple) strategy
+xfsdump: version 3.1.7 (dump format 3.0)
+xfsdump: level 0 dump of localhost.localdomain:/
+xfsdump: dump date: Fri Dec 15 11:27:32 2023
+xfsdump: session id: 57655ca0-b05d-45ef-95fb-11c4391d51d4
+xfsdump: session label: ""
+xfsrestore: using file dump (drive_simple) strategy
+xfsrestore: version 3.1.7 (dump format 3.0)
+xfsrestore: searching media for dump
+xfsdump: ino map phase 1: constructing initial dump list
+xfsdump: ino map phase 2: skipping (no pruning necessary)
+xfsdump: ino map phase 3: skipping (only one dump stream)
+xfsdump: ino map construction complete
+xfsdump: estimated dump size: 3398735360 bytes
+xfsdump: creating dump session media file 0 (media 0, file 0)
+xfsdump: dumping ino map
+xfsdump: dumping directories
+xfsrestore: examining media file 0
+xfsrestore: dump description: 
+xfsrestore: hostname: localhost.localdomain
+xfsrestore: mount point: /
+xfsrestore: volume: /dev/mapper/VolGroup00-LogVol00
+xfsrestore: session time: Fri Dec 15 11:27:32 2023
+xfsrestore: level: 0
+xfsrestore: session label: ""
+xfsrestore: media label: ""
+xfsrestore: file system id: 40715098-e708-4bc4-a650-b98a3bb5ebe9
+xfsrestore: session id: 57655ca0-b05d-45ef-95fb-11c4391d51d4
+xfsrestore: media id: 48c192b4-9229-4b6b-a3f5-4ac581f79457
+xfsrestore: searching media for directory dump
+xfsrestore: reading directories
+xfsdump: dumping non-directory files
+xfsrestore: 3148 directories and 33835 entries processed
+xfsrestore: directory post-processing
+xfsrestore: restoring non-directory files
+xfsdump: ending media file
+xfsdump: media file size 3358604616 bytes
+xfsdump: dump size (non-dir files) : 3338948848 bytes
+xfsdump: dump complete: 23 seconds elapsed
+xfsdump: Dump Status: SUCCESS
+xfsrestore: restore complete: 23 seconds elapsed
+xfsrestore: Restore Status: SUCCESS
+]0;root@localhost:~[root@localhost ~]# ls mnt[K[K[K/mnt/nr
+[0m[38;5;51mbin[0m  [38;5;27mboot[0m  [38;5;27mdev[0m  [38;5;27metc[0m  [38;5;27mhome[0m  [38;5;51mlib[0m  [38;5;51mlib64[0m  [38;5;27mmedia[0m  [38;5;27mmnt[0m  [38;5;27mopt[0m  [38;5;27mproc[0m  [38;5;27mroot[0m  [38;5;27mrun[0m  [38;5;51msbin[0m  [38;5;27msrv[0m  swapfile  [38;5;27msys[0m  [48;5;10;38;5;16mtmp[0m  [38;5;27musr[0m  [38;5;27mvar[0m
+]0;root@localhost:~[root@localhost ~]# for i in /proc[K[K[K[Kmnt/pro[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcd /mnt
+]0;root@localhost:/mnt[root@localhost mnt]# ls
+[0m[38;5;27mnr[0m
+]0;root@localhost:/mnt[root@localhost mnt]# mount /dev/VolGroup00/LogVol00 /mnt
+]0;root@localhost:/mnt[root@localhost mnt]# ls
+[0m[38;5;27mnr[0m
+]0;root@localhost:/mnt[root@localhost mnt]# umoun[K[K[K[K[Kpwd
+/mnt
+]0;root@localhost:/mnt[root@localhost mnt]# umon[Kunt [K[K[K[K[K[K[Kcd /dev/VolGroup00/LogVol00
+bash: cd: /dev/VolGroup00/LogVol00: Not a directory
+]0;root@localhost:/mnt[root@localhost mnt]# cd /der[Kv/VL[KO[KolGroup00/
+]0;root@localhost:/dev/VolGroup00[root@localhost VolGroup00]# ls -l
+total 0
+lrwxrwxrwx. 1 root root 7 Dec 15 11:21 [0m[38;5;51mLogVol00[0m -> [48;5;232;38;5;11m../dm-0[0m
+lrwxrwxrwx. 1 root root 7 Dec 15 11:21 [38;5;51mLogVol01[0m -> [48;5;232;38;5;11m../dm-1[0m
+]0;root@localhost:/dev/VolGroup00[root@localhost VolGroup00]# cd /dev/do[Kmo[K-0
+bash: cd: /dev/dm-0: Not a directory
+]0;root@localhost:/dev/VolGroup00[root@localhost VolGroup00]# cd ..
+]0;root@localhost:/dev[root@localhost dev]# ls 0[Kl[K-l[K[K[K[Kl
+total 0
+crw-------. 1 root root     10, 235 Dec 15 11:21 [0m[48;5;232;38;5;3mautofs[0m
+drwxr-xr-x. 2 root root         240 Dec 15 11:25 [38;5;27mblock[0m
+drwxr-xr-x. 2 root root         160 Dec 15 11:20 [38;5;27mbsg[0m
+crw-------. 1 root root     10, 234 Dec 15 11:21 [48;5;232;38;5;3mbtrfs-control[0m
+drwxr-xr-x. 2 root root        2760 Dec 15 11:21 [38;5;27mchar[0m
+crw-------. 1 root root      5,   1 Dec 15 11:21 [48;5;232;38;5;3mconsole[0m
+lrwxrwxrwx. 1 root root          11 Dec 15 11:20 [38;5;51mcore[0m -> /proc/kcore
+drwxr-xr-x. 3 root root          60 Dec 15 11:21 [38;5;27mcpu[0m
+crw-------. 1 root root     10,  61 Dec 15 11:21 [48;5;232;38;5;3mcpu_dma_latency[0m
+crw-------. 1 root root     10,  62 Dec 15 11:21 [48;5;232;38;5;3mcrash[0m
+drwxr-xr-x. 5 root root         100 Dec 15 11:21 [38;5;27mdisk[0m
+brw-rw----. 1 root disk    253,   0 Dec 15 11:21 [48;5;232;38;5;11mdm-0[0m
+brw-rw----. 1 root disk    253,   1 Dec 15 11:21 [48;5;232;38;5;11mdm-1[0m
+brw-rw----. 1 root disk    253,   2 Dec 15 11:25 [48;5;232;38;5;11mdm-2[0m
+lrwxrwxrwx. 1 root root          13 Dec 15 11:20 [38;5;51mfd[0m -> [38;5;27m/proc/self/fd[0m
+crw-rw-rw-. 1 root root      1,   7 Dec 15 11:21 [48;5;232;38;5;3mfull[0m
+crw-rw-rw-. 1 root root     10, 229 Dec 15 11:21 [48;5;232;38;5;3mfuse[0m
+crw-------. 1 root root     10, 228 Dec 15 11:21 [48;5;232;38;5;3mhpet[0m
+drwxr-xr-x. 2 root root           0 Dec 15 11:21 [38;5;27mhugepages[0m
+crw-------. 1 root root     10, 183 Dec 15 11:21 [48;5;232;38;5;3mhwrng[0m
+lrwxrwxrwx. 1 root root          25 Dec 15 11:21 [38;5;51minitctl[0m -> [40;38;5;11m/run/systemd/initctl/fifo[0m
+drwxr-xr-x. 3 root root         220 Dec 15 11:21 [38;5;27minput[0m
+crw-r--r--. 1 root root      1,  11 Dec 15 11:21 [48;5;232;38;5;3mkmsg[0m
+srw-rw-rw-. 1 root root           0 Dec 15 11:20 [38;5;13mlog[0m
+crw-rw----. 1 root disk     10, 237 Dec 15 11:21 [48;5;232;38;5;3mloop-control[0m
+drwxr-xr-x. 2 root root         120 Dec 15 11:25 [38;5;27mmapper[0m
+crw-------. 1 root root     10, 227 Dec 15 11:21 [48;5;232;38;5;3mmcelog[0m
+crw-r-----. 1 root kmem      1,   1 Dec 15 11:21 [48;5;232;38;5;3mmem[0m
+drwxrwxrwt. 2 root root          40 Dec 15 11:21 [48;5;10;38;5;16mmqueue[0m
+drwxr-xr-x. 2 root root          60 Dec 15 11:21 [38;5;27mnet[0m
+crw-------. 1 root root     10,  60 Dec 15 11:21 [48;5;232;38;5;3mnetwork_latency[0m
+crw-------. 1 root root     10,  59 Dec 15 11:21 [48;5;232;38;5;3mnetwork_throughput[0m
+crw-rw-rw-. 1 root root      1,   3 Dec 15 11:21 [48;5;232;38;5;3mnull[0m
+crw-------. 1 root root     10, 144 Dec 15 11:21 [48;5;232;38;5;3mnvram[0m
+crw-------. 1 root root      1,  12 Dec 15 11:21 [48;5;232;38;5;3moldmem[0m
+crw-r-----. 1 root kmem      1,   4 Dec 15 11:21 [48;5;232;38;5;3mport[0m
+crw-------. 1 root root    108,   0 Dec 15 11:21 [48;5;232;38;5;3mppp[0m
+crw-rw-rw-. 1 root tty       5,   2 Dec 15 11:30 [48;5;232;38;5;3mptmx[0m
+drwxr-xr-x. 2 root root           0 Dec 15 11:21 [38;5;27mpts[0m
+crw-rw-rw-. 1 root root      1,   8 Dec 15 11:21 [48;5;232;38;5;3mrandom[0m
+drwxr-xr-x. 2 root root          60 Dec 15 11:21 [38;5;27mraw[0m
+lrwxrwxrwx. 1 root root           4 Dec 15 11:21 [38;5;51mrtc[0m -> [48;5;232;38;5;3mrtc0[0m
+crw-------. 1 root root    252,   0 Dec 15 11:21 [48;5;232;38;5;3mrtc0[0m
+brw-rw----. 1 root disk      8,   0 Dec 15 11:21 [48;5;232;38;5;11msda[0m
+brw-rw----. 1 root disk      8,   1 Dec 15 11:21 [48;5;232;38;5;11msda1[0m
+brw-rw----. 1 root disk      8,  16 Dec 15 11:21 [48;5;232;38;5;11msdb[0m
+brw-rw----. 1 root disk      8,  32 Dec 15 11:25 [48;5;232;38;5;11msdc[0m
+brw-rw----. 1 root disk      8,  48 Dec 15 11:21 [48;5;232;38;5;11msdd[0m
+brw-rw----. 1 root disk      8,  64 Dec 15 11:21 [48;5;232;38;5;11msde[0m
+brw-rw----. 1 root disk      8,  80 Dec 15 11:21 [48;5;232;38;5;11msdf[0m
+crw-rw----. 1 root disk     21,   0 Dec 15 11:21 [48;5;232;38;5;3msg0[0m
+crw-rw----. 1 root disk     21,   1 Dec 15 11:21 [48;5;232;38;5;3msg1[0m
+crw-rw----. 1 root disk     21,   2 Dec 15 11:21 [48;5;232;38;5;3msg2[0m
+crw-rw----. 1 root disk     21,   3 Dec 15 11:21 [48;5;232;38;5;3msg3[0m
+crw-rw----. 1 root disk     21,   4 Dec 15 11:21 [48;5;232;38;5;3msg4[0m
+crw-rw----. 1 root disk     21,   5 Dec 15 11:21 [48;5;232;38;5;3msg5[0m
+drwxrwxrwt. 2 root root          40 Dec 15 11:20 [48;5;10;38;5;16mshm[0m
+crw-------. 1 root root     10, 231 Dec 15 11:21 [48;5;232;38;5;3msnapshot[0m
+drwxr-xr-x. 3 root root         180 Dec 15 11:21 [38;5;27msnd[0m
+lrwxrwxrwx. 1 root root          15 Dec 15 11:20 [38;5;51mstderr[0m -> [48;5;232;38;5;3m/proc/self/fd/2[0m
+lrwxrwxrwx. 1 root root          15 Dec 15 11:20 [38;5;51mstdin[0m -> [48;5;232;38;5;3m/proc/self/fd/0[0m
+lrwxrwxrwx. 1 root root          15 Dec 15 11:20 [38;5;51mstdout[0m -> [48;5;232;38;5;3m/proc/self/fd/1[0m
+crw-rw-rw-. 1 root tty       5,   0 Dec 15 11:21 [48;5;232;38;5;3mtty[0m
+crw--w----. 1 root tty       4,   0 Dec 15 11:21 [48;5;232;38;5;3mtty0[0m
+crw--w----. 1 root tty       4,   1 Dec 15 11:21 [48;5;232;38;5;3mtty1[0m
+crw--w----. 1 root tty       4,  10 Dec 15 11:21 [48;5;232;38;5;3mtty10[0m
+crw--w----. 1 root tty       4,  11 Dec 15 11:21 [48;5;232;38;5;3mtty11[0m
+crw--w----. 1 root tty       4,  12 Dec 15 11:21 [48;5;232;38;5;3mtty12[0m
+crw--w----. 1 root tty       4,  13 Dec 15 11:21 [48;5;232;38;5;3mtty13[0m
+crw--w----. 1 root tty       4,  14 Dec 15 11:21 [48;5;232;38;5;3mtty14[0m
+crw--w----. 1 root tty       4,  15 Dec 15 11:21 [48;5;232;38;5;3mtty15[0m
+crw--w----. 1 root tty       4,  16 Dec 15 11:21 [48;5;232;38;5;3mtty16[0m
+crw--w----. 1 root tty       4,  17 Dec 15 11:21 [48;5;232;38;5;3mtty17[0m
+crw--w----. 1 root tty       4,  18 Dec 15 11:21 [48;5;232;38;5;3mtty18[0m
+crw--w----. 1 root tty       4,  19 Dec 15 11:21 [48;5;232;38;5;3mtty19[0m
+crw--w----. 1 root tty       4,   2 Dec 15 11:21 [48;5;232;38;5;3mtty2[0m
+crw--w----. 1 root tty       4,  20 Dec 15 11:21 [48;5;232;38;5;3mtty20[0m
+crw--w----. 1 root tty       4,  21 Dec 15 11:21 [48;5;232;38;5;3mtty21[0m
+crw--w----. 1 root tty       4,  22 Dec 15 11:21 [48;5;232;38;5;3mtty22[0m
+crw--w----. 1 root tty       4,  23 Dec 15 11:21 [48;5;232;38;5;3mtty23[0m
+crw--w----. 1 root tty       4,  24 Dec 15 11:21 [48;5;232;38;5;3mtty24[0m
+crw--w----. 1 root tty       4,  25 Dec 15 11:21 [48;5;232;38;5;3mtty25[0m
+crw--w----. 1 root tty       4,  26 Dec 15 11:21 [48;5;232;38;5;3mtty26[0m
+crw--w----. 1 root tty       4,  27 Dec 15 11:21 [48;5;232;38;5;3mtty27[0m
+crw--w----. 1 root tty       4,  28 Dec 15 11:21 [48;5;232;38;5;3mtty28[0m
+crw--w----. 1 root tty       4,  29 Dec 15 11:21 [48;5;232;38;5;3mtty29[0m
+crw--w----. 1 root tty       4,   3 Dec 15 11:21 [48;5;232;38;5;3mtty3[0m
+crw--w----. 1 root tty       4,  30 Dec 15 11:21 [48;5;232;38;5;3mtty30[0m
+crw--w----. 1 root tty       4,  31 Dec 15 11:21 [48;5;232;38;5;3mtty31[0m
+crw--w----. 1 root tty       4,  32 Dec 15 11:21 [48;5;232;38;5;3mtty32[0m
+crw--w----. 1 root tty       4,  33 Dec 15 11:21 [48;5;232;38;5;3mtty33[0m
+crw--w----. 1 root tty       4,  34 Dec 15 11:21 [48;5;232;38;5;3mtty34[0m
+crw--w----. 1 root tty       4,  35 Dec 15 11:21 [48;5;232;38;5;3mtty35[0m
+crw--w----. 1 root tty       4,  36 Dec 15 11:21 [48;5;232;38;5;3mtty36[0m
+crw--w----. 1 root tty       4,  37 Dec 15 11:21 [48;5;232;38;5;3mtty37[0m
+crw--w----. 1 root tty       4,  38 Dec 15 11:21 [48;5;232;38;5;3mtty38[0m
+crw--w----. 1 root tty       4,  39 Dec 15 11:21 [48;5;232;38;5;3mtty39[0m
+crw--w----. 1 root tty       4,   4 Dec 15 11:21 [48;5;232;38;5;3mtty4[0m
+crw--w----. 1 root tty       4,  40 Dec 15 11:21 [48;5;232;38;5;3mtty40[0m
+crw--w----. 1 root tty       4,  41 Dec 15 11:21 [48;5;232;38;5;3mtty41[0m
+crw--w----. 1 root tty       4,  42 Dec 15 11:21 [48;5;232;38;5;3mtty42[0m
+crw--w----. 1 root tty       4,  43 Dec 15 11:21 [48;5;232;38;5;3mtty43[0m
+crw--w----. 1 root tty       4,  44 Dec 15 11:21 [48;5;232;38;5;3mtty44[0m
+crw--w----. 1 root tty       4,  45 Dec 15 11:21 [48;5;232;38;5;3mtty45[0m
+crw--w----. 1 root tty       4,  46 Dec 15 11:21 [48;5;232;38;5;3mtty46[0m
+crw--w----. 1 root tty       4,  47 Dec 15 11:21 [48;5;232;38;5;3mtty47[0m
+crw--w----. 1 root tty       4,  48 Dec 15 11:21 [48;5;232;38;5;3mtty48[0m
+crw--w----. 1 root tty       4,  49 Dec 15 11:21 [48;5;232;38;5;3mtty49[0m
+crw--w----. 1 root tty       4,   5 Dec 15 11:21 [48;5;232;38;5;3mtty5[0m
+crw--w----. 1 root tty       4,  50 Dec 15 11:21 [48;5;232;38;5;3mtty50[0m
+crw--w----. 1 root tty       4,  51 Dec 15 11:21 [48;5;232;38;5;3mtty51[0m
+crw--w----. 1 root tty       4,  52 Dec 15 11:21 [48;5;232;38;5;3mtty52[0m
+crw--w----. 1 root tty       4,  53 Dec 15 11:21 [48;5;232;38;5;3mtty53[0m
+crw--w----. 1 root tty       4,  54 Dec 15 11:21 [48;5;232;38;5;3mtty54[0m
+crw--w----. 1 root tty       4,  55 Dec 15 11:21 [48;5;232;38;5;3mtty55[0m
+crw--w----. 1 root tty       4,  56 Dec 15 11:21 [48;5;232;38;5;3mtty56[0m
+crw--w----. 1 root tty       4,  57 Dec 15 11:21 [48;5;232;38;5;3mtty57[0m
+crw--w----. 1 root tty       4,  58 Dec 15 11:21 [48;5;232;38;5;3mtty58[0m
+crw--w----. 1 root tty       4,  59 Dec 15 11:21 [48;5;232;38;5;3mtty59[0m
+crw--w----. 1 root tty       4,   6 Dec 15 11:21 [48;5;232;38;5;3mtty6[0m
+crw--w----. 1 root tty       4,  60 Dec 15 11:21 [48;5;232;38;5;3mtty60[0m
+crw--w----. 1 root tty       4,  61 Dec 15 11:21 [48;5;232;38;5;3mtty61[0m
+crw--w----. 1 root tty       4,  62 Dec 15 11:21 [48;5;232;38;5;3mtty62[0m
+crw--w----. 1 root tty       4,  63 Dec 15 11:21 [48;5;232;38;5;3mtty63[0m
+crw--w----. 1 root tty       4,   7 Dec 15 11:21 [48;5;232;38;5;3mtty7[0m
+crw--w----. 1 root tty       4,   8 Dec 15 11:21 [48;5;232;38;5;3mtty8[0m
+crw--w----. 1 root tty       4,   9 Dec 15 11:21 [48;5;232;38;5;3mtty9[0m
+crw-rw----. 1 root dialout   4,  64 Dec 15 11:21 [48;5;232;38;5;3mttyS0[0m
+crw-rw----. 1 root dialout   4,  65 Dec 15 11:21 [48;5;232;38;5;3mttyS1[0m
+crw-rw----. 1 root dialout   4,  66 Dec 15 11:21 [48;5;232;38;5;3mttyS2[0m
+crw-rw----. 1 root dialout   4,  67 Dec 15 11:21 [48;5;232;38;5;3mttyS3[0m
+crw-------. 1 root root     10, 239 Dec 15 11:21 [48;5;232;38;5;3muhid[0m
+crw-------. 1 root root     10, 223 Dec 15 11:21 [48;5;232;38;5;3muinput[0m
+crw-rw-rw-. 1 root root      1,   9 Dec 15 11:21 [48;5;232;38;5;3murandom[0m
+crw-------. 1 root root    247,   0 Dec 15 11:21 [48;5;232;38;5;3musbmon0[0m
+crw-rw----. 1 root tty       7,   0 Dec 15 11:21 [48;5;232;38;5;3mvcs[0m
+crw-rw----. 1 root tty       7,   1 Dec 15 11:21 [48;5;232;38;5;3mvcs1[0m
+crw-rw----. 1 root tty       7,   2 Dec 15 11:21 [48;5;232;38;5;3mvcs2[0m
+crw-rw----. 1 root tty       7,   3 Dec 15 11:21 [48;5;232;38;5;3mvcs3[0m
+crw-rw----. 1 root tty       7,   4 Dec 15 11:21 [48;5;232;38;5;3mvcs4[0m
+crw-rw----. 1 root tty       7,   5 Dec 15 11:21 [48;5;232;38;5;3mvcs5[0m
+crw-rw----. 1 root tty       7,   6 Dec 15 11:21 [48;5;232;38;5;3mvcs6[0m
+crw-rw----. 1 root tty       7, 128 Dec 15 11:21 [48;5;232;38;5;3mvcsa[0m
+crw-rw----. 1 root tty       7, 129 Dec 15 11:21 [48;5;232;38;5;3mvcsa1[0m
+crw-rw----. 1 root tty       7, 130 Dec 15 11:21 [48;5;232;38;5;3mvcsa2[0m
+crw-rw----. 1 root tty       7, 131 Dec 15 11:21 [48;5;232;38;5;3mvcsa3[0m
+crw-rw----. 1 root tty       7, 132 Dec 15 11:21 [48;5;232;38;5;3mvcsa4[0m
+crw-rw----. 1 root tty       7, 133 Dec 15 11:21 [48;5;232;38;5;3mvcsa5[0m
+crw-rw----. 1 root tty       7, 134 Dec 15 11:21 [48;5;232;38;5;3mvcsa6[0m
+drwxr-xr-x. 2 root root          60 Dec 15 11:21 [38;5;27mvfio[0m
+crw-------. 1 root root     10,  63 Dec 15 11:21 [48;5;232;38;5;3mvga_arbiter[0m
+drwxr-xr-x. 2 root root          60 Dec 15 11:25 [38;5;27mvg_root[0m
+crw-------. 1 root root     10, 137 Dec 15 11:21 [48;5;232;38;5;3mvhci[0m
+crw-------. 1 root root     10, 238 Dec 15 11:21 [48;5;232;38;5;3mvhost-net[0m
+drwxr-xr-x. 2 root root          80 Dec 15 11:21 [38;5;27mVolGroup00[0m
+crw-rw-rw-. 1 root root      1,   5 Dec 15 11:21 [48;5;232;38;5;3mzero[0m
+]0;root@localhost:/dev[root@localhost dev]# llcd ../dev/dm-0[7Pls -lcd /dev/VolGroup00/LogVol00[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpwd[K[1Plsmount /dev/VolGroup00/LogVol00 /mnt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcd /mntls /mnt/nr[53@xfsdump -J - /dev/VolGroup00/LogVol00 | xfsrestore -J -[C[C[C[C[C[C[C[C[1P /mnt/nr[1P/mnt/nr[1P /mnt/nr[1P /mnt/nr[1P/mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P/mnt/nr[1P /mnt/nr[1P/mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P/mnt/nr[1P /mnt/nr[1P/mnt/nr[1P /mnt/nr[1P /mnt/nr[1P/mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nr[1P /mnt/nrl /mnt/nrs /mnt/nr
+ls: cannot access /mnt/nr: No such file or directory
+]0;root@localhost:/dev[root@localhost dev]# ls /mnt/nr[K[K
+[0m[38;5;51mbin[0m  [38;5;27mboot[0m  [38;5;27mdev[0m  [38;5;27metc[0m  [38;5;27mhome[0m  [38;5;51mlib[0m  [38;5;51mlib64[0m  [38;5;27mmedia[0m  [38;5;27mmnt[0m  [38;5;27mopt[0m  [38;5;27mproc[0m  [38;5;27mroot[0m  [38;5;27mrun[0m  [38;5;51msbin[0m  [38;5;27msrv[0m  swapfile  [38;5;27msys[0m  [48;5;10;38;5;16mtmp[0m  [38;5;27musr[0m  [38;5;27mvar[0m
+]0;root@localhost:/dev[root@localhost dev]# ls /mnt/nrl[Kcd ../dev/dm-0[7Pls -lcd /dev/VolGroup00/ls -l[Kcd /dev/dm-0..[K/dev/dm-0[7Pls -lcd /dev/VolGroup00/LogVol00[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpwd[K[1Plspwdcd /dev/VolGroup00/LogVol00[Kls -l[Kcd /dev/dm-0..[K[3Plls /mnt/nr[K[Kls /mnt/nrl[Kcd ../dev/dm-0[7Pls -lcd /dev/VolGroup00/LogVol00[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpwd[K[1Plsmount /dev/VolGroup00/LogVol00 /mnt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcd /mntls /mnt/nr[53@xfsdump -J - /dev/VolGroup00/LogVol00 | xfsrestore -J -[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K
+]0;root@localhost:/dev[root@localhost dev]# cd mnt
+bash: cd: mnt: No such file or directory
+]0;root@localhost:/dev[root@localhost dev]# /mnt/n[Km
+media/ mnt/   
+[root@localhost dev]# /mnt/mnt/
+bash: /mnt/mnt/: Is a directory
+]0;root@localhost:/dev[root@localhost dev]# cd /mnt/mnt/
+]0;root@localhost:/mnt/mnt[root@localhost mnt]# ls
+[0m[38;5;27mnr[0m
+]0;root@localhost:/mnt/mnt[root@localhost mnt]# ls /mnt/mnt/nr
+]0;root@localhost:/mnt/mnt[root@localhost mnt]# xfsls /mnt/mnt/nr[Kcd /mnt/mnt/[3P/mnt/mnt/[3Pcd mntls /mnt/nrl[Kcd ../dev/dm-0[7Pls -lcd /dev/VolGroup00/LogVol00[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cpwd[K[1Plsmount /dev/VolGroup00/LogVol00 /mnt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcd /mntls /mnt/nr[53@xfsdump -J - /dev/VolGroup00/LogVol00 | xfsrestore -J -[C[C[C[C[C[C[C[C[K[Kmnt/nr
+xfsdump: using file dump (drive_simple) strategy
+xfsdump: version 3.1.7 (dump format 3.0)
+xfsrestore: using file dump (drive_simple) strategy
+xfsrestore: version 3.1.7 (dump format 3.0)
+xfsrestore: searching media for dump
+xfsdump: level 0 dump of localhost.localdomain:/mnt
+xfsdump: dump date: Fri Dec 15 11:35:17 2023
+xfsdump: session id: 91f5a15a-e6b4-459f-86ef-f8bea894e867
+xfsdump: session label: ""
+xfsdump: ino map phase 1: constructing initial dump list
+xfsdump: ino map phase 2: skipping (no pruning necessary)
+xfsdump: ino map phase 3: skipping (only one dump stream)
+xfsdump: ino map construction complete
+xfsdump: estimated dump size: 3398559872 bytes
+xfsdump: creating dump session media file 0 (media 0, file 0)
+xfsdump: dumping ino map
+xfsdump: dumping directories
+xfsrestore: examining media file 0
+xfsrestore: dump description: 
+xfsrestore: hostname: localhost.localdomain
+xfsrestore: mount point: /mnt
+xfsrestore: volume: /dev/mapper/VolGroup00-LogVol00
+xfsrestore: session time: Fri Dec 15 11:35:17 2023
+xfsrestore: level: 0
+xfsrestore: session label: ""
+xfsrestore: media label: ""
+xfsrestore: file system id: 40715098-e708-4bc4-a650-b98a3bb5ebe9
+xfsrestore: session id: 91f5a15a-e6b4-459f-86ef-f8bea894e867
+xfsrestore: media id: 3a2dbacf-684a-4dfb-a6ae-381eecfc7896
+xfsrestore: searching media for directory dump
+xfsrestore: reading directories
+xfsdump: dumping non-directory files
+xfsrestore: 3149 directories and 33838 entries processed
+xfsrestore: directory post-processing
+xfsrestore: restoring non-directory files
+xfsdump: ending media file
+xfsdump: media file size 3358645576 bytes
+xfsdump: dump size (non-dir files) : 3338988480 bytes
+xfsdump: dump complete: 24 seconds elapsed
+xfsdump: Dump Status: SUCCESS
+xfsrestore: restore complete: 24 seconds elapsed
+xfsrestore: Restore Status: SUCCESS
+]0;root@localhost:/mnt/mnt[root@localhost mnt]# 
+]0;root@localhost:/mnt/mnt[root@localhost mnt]# cd [K[K[Kls /mnt/mnt/nr
+[0m[38;5;51mbin[0m  [38;5;27mboot[0m  [38;5;27mdev[0m  [38;5;27metc[0m  [38;5;27mhome[0m  [38;5;51mlib[0m  [38;5;51mlib64[0m  [38;5;27mmedia[0m  [38;5;27mmnt[0m  [38;5;27mopt[0m  [38;5;27mproc[0m  [38;5;27mroot[0m  [38;5;27mrun[0m  [38;5;51msbin[0m  [38;5;27msrv[0m  swapfile  [38;5;27msys[0m  [48;5;10;38;5;16mtmp[0m  [38;5;27musr[0m  [38;5;27mvar[0m
+]0;root@localhost:/mnt/mnt[root@localhost mnt]# for i in /[K/mnt/proc/ m[K/mnt/sys/ /mnt/de[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kproc/ /sys/ /dev/ /run/ /boot/ [K; do mount --bind $i /mnt/mnt/nr$i[K[K/$i; done
+]0;root@localhost:/mnt/mnt[root@localhost mnt]# chrot[Kot /mnt/mnt/b[Knr/
+]0;root@localhost:/[?1034h[root@localhost /]# grup2-mkconfig -o /boot/grub2/grub.cfg 
+bash: grup2-mkconfig: command not found
+]0;root@localhost:/[root@localhost /]# grup2-mkconfig -o /boot/grub2/grub.cfg [C[C[C[C[C[1P[1@b
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-3.10.0-1127.el7.x86_64
+Found initrd image: /boot/initramfs-3.10.0-1127.el7.x86_64.img
+Found CentOS Linux release 7.9.2009 (Core) on /dev/sda1
+done
+]0;root@localhost:/[root@localhost /]# cd /b[Koo[K[Kboot; for i in `ls inet[K[Kitramfs-*.ing[K[Kmg`; do dracut -v $i `echo $i|sed "s/initramfs-//g; s/.img//g"` --force; de[Kone[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+Executing: /sbin/dracut -v initramfs-3.10.0-1127.el7.x86_64.img 3.10.0-1127.el7.x86_64 --force
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'plymouth' will not be installed, because command 'plymouthd' could not be found!
+dracut module 'plymouth' will not be installed, because command 'plymouth' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because command 'dmraid' could not be found!
+dracut module 'dmsquash-live-ntfs' will not be installed, because command 'ntfs-3g' could not be found!
+dracut module 'multipath' will not be installed, because command 'multipath' could not be found!
+dracut module 'busybox' will not be installed, because command 'busybox' could not be found!
+dracut module 'crypt' will not be installed, because command 'cryptsetup' could not be found!
+dracut module 'dmraid' will not be installed, because command 'dmraid' could not be found!
+dracut module 'dmsquash-live-ntfs' will not be installed, because command 'ntfs-3g' could not be found!
+dracut module 'multipath' will not be installed, because command 'multipath' could not be found!
+*** Including module: bash ***
+*** Including module: nss-softokn ***
+*** Including module: i18n ***
+*** Including module: dm ***
+Skipping udev rule: 64-device-mapper.rules
+Skipping udev rule: 60-persistent-storage-dm.rules
+Skipping udev rule: 55-dm.rules
+*** Including module: kernel-modules ***
+Omitting driver floppy
+*** Including module: lvm ***
+Skipping udev rule: 64-device-mapper.rules
+Skipping udev rule: 56-lvm.rules
+Skipping udev rule: 60-persistent-storage-lvm.rules
+*** Including module: qemu ***
+*** Including module: rootfs-block ***
+*** Including module: terminfo ***
+*** Including module: udev-rules ***
+Skipping udev rule: 40-redhat-cpu-hotplug.rules
+Skipping udev rule: 91-permissions.rules
+*** Including module: biosdevname ***
+*** Including module: systemd ***
+*** Including module: usrmount ***
+*** Including module: base ***
+*** Including module: fs-lib ***
+*** Including module: shutdown ***
+*** Including modules done ***
+*** Installing kernel module dependencies and firmware ***
+*** Installing kernel module dependencies and firmware done ***
+*** Resolving executable dependencies ***
+*** Resolving executable dependencies done***
+*** Hardlinking files ***
+*** Hardlinking files done ***
+*** Stripping files ***
+*** Stripping files done ***
+*** Generating early-microcode cpio image contents ***
+*** No early-microcode cpio image needed ***
+*** Store current command line parameters ***
+*** Creating image file ***
+*** Creating image file done ***
+*** Creating initramfs image file '/boot/initramfs-3.10.0-1127.el7.x86_64.img' done ***
+]0;root@localhost:/boot[root@localhost boot]# 
+]0;root@localhost:/boot[root@localhost boot]# lsblk
+NAME                  MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                     8:0    0   40G  0 disk 
+└─sda1                  8:1    0   40G  0 part 
+sdb                     8:16   0   40G  0 disk 
+├─VolGroup00-LogVol00 253:0    0   38G  0 lvm  /boot
+└─VolGroup00-LogVol01 253:1    0  1.5G  0 lvm  
+sdc                     8:32   0   10G  0 disk 
+└─vg_root-lv_root     253:2    0   10G  0 lvm  
+sdd                     8:48   0    2G  0 disk 
+sde                     8:64   0    1G  0 disk 
+sdf                     8:80   0    1G  0 disk 
+]0;root@localhost:/boot[root@localhost boot]#  [Kvi /boot/grub2/grub.cfg 
+[?1049h[?1h=[1;23r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[23;1H"/boot/grub2/grub.cfg" 154L, 5193C[1;1H#
+# DO NOT EDIT THIS FILE
+#
+# It is automatically generated by grub2-mkconfig using templates
+# from /etc/grub.d and settings from /etc/default/grub
+#
+
+### BEGIN /etc/grub.d/00_header ###
+set pager=1
+
+if [ -s $prefix/grubenv ]; then
+  load_env
+fi
+if [ "${next_entry}" ] ; then
+   set default="${next_entry}"
+   set next_entry=
+   save_env next_entry
+   set boot_once=true
+else
+   set default="${saved_entry}"
+fi[1;1H[?12l[?25h[?25l[23;1H[K[23;1H/[?12l[?25hrd.lvm[?25l[31msearch hit BOTTOM, continuing at TOP[m[97m[41mE486: Pattern not found: rd.lvm[m[23;32H[K[1;1H[?12l[?25h[?25l[23;1H[K[23;1H/[?12l[?25hlvm[?25l[27m[m[H[2J[1;3Hfi
+fi
+### END /etc/grub.d/01_users ###
+
+### BEGIN /etc/grub.d/10_linux ###
+menuentry 'CentOS Linux (3.10.0-1127.el7.x86_64) 7 (Core)' --class centos --class gnu-linux --class gnu --class os --unrestricted $menuenn[7;1Htry_id_option 'gnulinux-3.10.0-1127.el7.x86_64-advanced-40715098-e708-4bc4-a650-b98a3bb5ebe9' {[8;9Hload_video[9;9Hset gfxpayload=keep[10;9Hinsmod gzio[11;9Hinsmod lvm[12;9Hinsmod xfs[13;9Hset root='lvmid/6H6oJE-xvrq-mQJ5-Xc9O-ytJo-B7r1-GX4ufE/jjuCZZ-a1QZ-LA43-cNGL-YkSb-HT9n-mG1taw'[14;9Hif [ x$feature_platform_search_hint = xy ]; then[15;11Hsearch --no-floppy --fs-uuid --set=root --hint='lvmid/6H6oJE-xvrq-mQJ5-Xc9O-ytJo-B7r1-GX4ufE/jjuCZZ-a1QZ-LA43-cNGL-YkSb-HT9n-mGG[16;1H1taw'  40715098-e708-4bc4-a650-b98a3bb5ebe9[17;9Helse[18;11Hsearch --no-floppy --fs-uuid --set=root 40715098-e708-4bc4-a650-b98a3bb5ebe9[19;9Hfi[20;9Hlinux16 /boot/vmlinuz-3.10.0-1127.el7.x86_64 root=/dev/mapper/VolGroup00-LogVol00 ro no_timer_check console=tty0 console=ttyS0,111[21;1H5200n8 net.ifnames=0 biosdevname=0 elevator=noop crashkernel=auto[22;9Hinitrd16 /boot/initramfs-3.10.0-1127.el7.x86_64.img[11;16H[?12l[?25h[?25l[23;1H/lvm[13;19H[?12l[?25h[?25l[23;1H[15;59H[?12l[?25h[?25l[23;1H[31msearch hit BOTTOM, continuing at TOP[11;16H[?12l[?25h[?25l[m[23;1H/lvm[23;5H[K[23;1H[13;19H[?12l[?25h[?25l[23;1H[15;59H[?12l[?25h[?25l[23;1H[31msearch hit BOTTOM, continuing at TOP[11;16H[?12l[?25h[?25l[m[23;1H/lvm[23;5H[K[23;1H[13;19H[?12l[?25h[?25l[23;1H[15;59H[?12l[?25h[?25l[23;1H[31msearch hit BOTTOM, continuing at TOP[11;16H[?12l[?25h[?25l[m[23;1H/lvm[23;5H[K[23;1H[13;19H[?12l[?25h[?25l[23;1H[15;59H[?12l[?25h[?25l[23;1H[31msearch hit BOTTOM, continuing at TOP[11;16H[?12l[?25h[?25l[m[23;1H/lvm[23;5H[K[23;1H[13;19H[?12l[?25h[?25l[23;1H[15;59H[?12l[?25h[?25l[23;1H[31msearch hit BOTTOM, continuing at TOP[11;16H[?12l[?25h[?25l[m[23;1H/lvm[23;5H[K[23;1H[13;19H[?12l[?25h[?25l[23;1H[15;59H[?12l[?25h[?25l[23;1H[31msearch hit BOTTOM, continuing at TOP[11;16H[?12l[?25h[?25l[m[23;1H[K[23;1H/[?12l[?25hlv[?25l[13;19H[?12l[?25h[?25l[23;1H[15;59H[?12l[?25h[?25l[23;1H[31msearch hit BOTTOM, continuing at TOP[11;16H[?12l[?25h[?25l[m[23;1H/lv[23;4H[K[23;1H[13;19H[?12l[?25h[?25l[23;1H[15;59H[?12l[?25h[?25l[23;1H[31msearch hit BOTTOM, continuing at TOP[11;16H[?12l[?25h[?25l[m[23;1H/lv[23;4H[K[23;1H[13;19H[?12l[?25h[?25l[23;1H[15;59H[?12l[?25h[?25l[23;1H[31msearch hit BOTTOM, continuing at TOP[11;16H[?12l[?25h[?25l[m[23;1H/lv[23;4H[K[23;1H[13;19H[?12l[?25h[14;9H[?25l[23;1H[K[23;1H/[?12l[?25h [14;9H[13;102H[?25l[23;1H:[?12l[?25hq[?25l[23;1H[K[23;1H[?1l>[?12l[?25h[?1049l]0;root@localhost:/boot[root@localhost boot]# exit
+exit
+]0;root@localhost:/mnt/mnt[root@localhost mnt]# exit
+exit
+
+Script done on Fri 15 Dec 2023 11:42:05 AM UTC
+Script started on Fri 15 Dec 2023 11:55:49 AM UTC
+]0;root@localhost:~[?1034h[root@localhost ~]# pvcreate /dev/sdd /dev/sde
+  Physical volume "/dev/sdd" successfully created.
+  Physical volume "/dev/sde" successfully created.
+]0;root@localhost:~[root@localhost ~]# vgcreate vg_var /dev/sdd [K /dev/sde
+  Volume group "vg_var" successfully created
+]0;root@localhost:~[root@localhost ~]# lc[Kvcrae[K[Keate -L 950M -m1 -n lv_var vg_var
+  Rounding up size to full physical extent 952.00 MiB
+  Logical volume "lv_var" created.
+]0;root@localhost:~[root@localhost ~]# mkfs.ext4 /dev/vg_var/lv_var 
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+Stride=0 blocks, Stripe width=0 blocks
+60928 inodes, 243712 blocks
+12185 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=249561088
+8 block groups
+32768 blocks per group, 32768 fragments per group
+7616 inodes per group
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376
+
+Allocating group tables: 0/8   done                            
+Writing inode tables: 0/8   done                            
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: 0/8   done
+
+]0;root@localhost:~[root@localhost ~]# mount d[K/dev/vg_var/lv_var /mnt
+]0;root@localhost:~[root@localhost ~]# cp -aR /var/* /mnt/ 
+]0;root@localhost:~[root@localhost ~]# 
+]0;root@localhost:~[root@localhost ~]# md[Kkdir /tmp [K/lo[K[Koldvar && mv /var/* /tmp/l[Koldva[Kar
+mv: cannot move ‘/var/tmp’ to ‘/tmp/oldvar/tmp’: Device or resource busy
+]0;root@localhost:~[root@localhost ~]# mkdir /tmp/oldvar && mv /var/* /tmp/oldvar[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P
+mv: cannot move ‘/var/tmp’ to ‘/tmp/oldvar/tmp’: Device or resource busy
+]0;root@localhost:~[root@localhost ~]# mv /var/* /tmp/oldvar[Kv[Kr[Kr/
+mv: cannot move ‘/var/tmp’ to ‘/tmp/oldvar/tmp’: Device or resource busy
+]0;root@localhost:~[root@localhost ~]# umount /mnt
+]0;root@localhost:~[root@localhost ~]# mount /dev/vg_var/lv_var /var
+]0;root@localhost:~[root@localhost ~]# 
+]0;root@localhost:~[root@localhost ~]# 
+]0;root@localhost:~[root@localhost ~]# echo \[K"`blkid [K | grep var: | wa[K[Kawk \[K'{print $2}\[K'` /var/[K ext4 deaf[K[Kfaults 0 0'[K" .. [K[K[K>> e[K/etc/fstab
+]0;root@localhost:~[root@localhost ~]# 
+]0;root@localhost:~[root@localhost ~]# 
+]0;root@localhost:~[root@localhost ~]# cat /etc/fstab 
+
+#
+# /etc/fstab
+# Created by anaconda on Thu Apr 30 22:04:55 2020
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+UUID=1c419d6c-5064-4a2b-953c-05b2c67edb15 /                       xfs     defaults        0 0
+/swapfile none swap defaults 0 0
+UUID="33166154-784a-42bc-bb7a-88b54c9f6dd3" /var ext4 defaults 0 0
+]0;root@localhost:~[root@localhost ~]# v[Klvremove /dev/vg_root/lv_root 
+Do you really want to remove active logical volume vg_root/lv_root? [y/n]: y
+  Logical volume "lv_root" successfully removed
+]0;root@localhost:~[root@localhost ~]# vgremove /dev/vg_roo[K[K[Kroot
+  Volume group "vg_root" successfully removed
+]0;root@localhost:~[root@localhost ~]# 
+]0;root@localhost:~[root@localhost ~]# pvremove /dev/sdb
+  PV /dev/sdb is used by VG VolGroup00 so please use vgreduce first.
+  (If you are certain you need pvremove, then confirm by using --force twice.)
+  /dev/sdb: physical volume label not removed.
+]0;root@localhost:~[root@localhost ~]# pvremove /dev/sdb[Kc
+  Labels on physical volume "/dev/sdc" successfully wiped.
+]0;root@localhost:~[root@localhost ~]# l[K
+]0;root@localhost:~[root@localhost ~]# lvcrate[K[K[Keate -n LogVol_Home -L 2G /dev/VolGr[Kroup00
+  Volume group "VolGroup00" has insufficient free space (128 extents): 512 required.
+]0;root@localhost:~[root@localhost ~]# reboot[K[K[K[K[K[Kvgs
+  VG         #PV #LV #SN Attr   VSize   VFree  
+  VolGroup00   1   2   0 wz--n- <40.00g 512.00m
+  vg_var       2   1   0 wz--n-   2.99g   1.12g
+]0;root@localhost:~[root@localhost ~]# ls[Kvs
+  LV       VG         Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  LogVol00 VolGroup00 -wi-ao---- <38.00g                                                    
+  LogVol01 VolGroup00 -wi-a-----   1.50g                                                    
+  lv_var   vg_var     rwi-aor--- 952.00m                                    100.00          
+]0;root@localhost:~[root@localhost ~]# exit
+exit
+
+Script done on Fri 15 Dec 2023 12:13:49 PM UTC
