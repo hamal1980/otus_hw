@@ -1,0 +1,7 @@
+Before:
+[vagrant@kernel-update etc]$ uname -r
+4.18.0-532.el8.x86_64
+
+After update:
+[vagrant@kernel-update ~]$ uname -r
+6.8.7-1.el8.elrepo.x86_64
